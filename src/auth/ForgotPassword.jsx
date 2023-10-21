@@ -1,10 +1,11 @@
 import React from 'react'
-// import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import todo from '../images/todo.png'
 import img from '../images/forgot_img.png';
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
+import '../index.css'
+
 
 
 const ForgotPassword = () => {
@@ -60,6 +61,7 @@ const ForgotPassword = () => {
                         padding: "6px 30px",
                         fontSize: "16px",
                         width: '300px',
+                        height:'50px'
 
                     }} variant="contained" disableElevation>
                         Reset my password
