@@ -1,13 +1,92 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500&family=Josefin+Slab:wght@500&family=Montserrat:wght@300&display=swap");
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.forgot_main {
+  display: flex;
+}
+
+.forgot_child img {
+  height: 40px;
+  width: 150px;
+  margin-left: 60px;
+
+}
+.col2{
+  margin-top: 140px;
+ 
+}
+
+.forgot_child {
+  margin-left: 250px;
+  margin-top: 20px;
+  margin-right: 300px;
+  flex-direction: column;
+  display: flex;
+
+}
+
+.icon {
+  color: #dc4c3e;
+}
+
+.mhead {
+  color: #dc4c3e;
+  display: flex;
+  flex-direction: column;
+  float: right;
+  margin-top: 16px;
+}
+
+.content {
+  margin-top: 100px;
+  padding-left: 300px;
+  max-width: 630px;
+}
+
+.content h1 {
+  font-weight: 800;
+  letter-spacing: 1px
+}
+
+.content p {
+  font-weight: 400;
+  color: rgb(61, 61, 61);
+  margin-top: 7px;
+}
+
+.forgotinput {
+  border-radius: 7px;
+  background-color: #ffffff;
+  width: 300px;
+  height: 50px;
+  border: 2px solid rgb(158, 155, 155);
+  padding-left: 14px;
+  margin-top: 14px;
+  font-size: 18px;
+}
+
+.forgotline {
+  width: 300px;
+  border: 1px solid rgb(212, 211, 211);
+}
+
+.forgot_end {
+  color: black;
+  font-size: 15px;
+  text-align: center;
+
+}
+
+.forgot_end .loginlink {
+  margin-top: 120px;
+}
+
+.forgot_end .forgotline {
+  margin-bottom: 10px;
 }
