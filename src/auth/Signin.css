@@ -10,8 +10,8 @@
   
 	}
 
-	.main_header{
-		margin-left: 320px;
+	.log_header{
+		margin-left: 300px;
 		margin-top: 20px;
 		margin-right: 300px;
 		flex-direction: column;
@@ -36,21 +36,20 @@
 	}
 
 .chead{
-	margin-left: 320px;
+	margin-left: 300px;
 	margin-top: 80px;
 }
 
-.icon{
+.log_icon{
 	margin-left: 300px;
 	margin-top: 30px;
 	text-align: center;
-	color: black;
 }
 
-.google{
+.log_google{
 	border: 1px solid rgb(216, 216, 216);
 	height: 50px;
-	width: 350px;
+	width: 380px;
 	border-radius: 5px;
 	display: flex;
 	justify-content: center;
@@ -58,7 +57,7 @@
 	margin-bottom: 15px;
 	/* margin-top: 10px; */
 }
-.google img{
+.log_google img{
 
 	margin-left: 10px;
 	/* margin-top: 10px; */
@@ -66,17 +65,30 @@
 	
 }
 
-.google .go{
+.log_google .go{
 	font-size: 18px;
 	text-align: center;
 }
 
-.google:hover{
+.log_google:hover{
 	background-color: #e5e5e5;
 	cursor: pointer;
 }
 
+/* .facebook{
+	border: 1px solid rgb(216, 216, 216);
+	height: 50px;
+	width: 450px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
+.facebook img{
+	margin-top: 14px;
+
+} */
 .face{
 	font-size: 18px;
 	text-align: center;
@@ -90,44 +102,52 @@
 	
 }
 
-.line{
+.log_line{
 	border: 1px solid rgb(216, 216, 216);
-	width: 350px;	
+	width: 380px;
+	
+	
 }
 
 .inp_data{
-	margin-left: 320px;
+	margin-left: 300px;
 }
 
 .btn{
-	margin-left: 320px;
+	margin-left: 300px;
 	/* margin-top: 10px; */
 	margin-top: 15px;
 }
 
-.pra{
-	margin-left: 320px;
+.pra1{
+	margin-left: 300px;
 	font-size: 12px;
+	max-width: 380px;
 }
 
-.line1{
+.line2{
 	border: 1px solid rgb(216, 216, 216);
-	width: 350px;
-	margin-top: 20px;	
+	width: 380px;
+	margin-top: -6px;	
 }
 
 .form{
 	max-width: 1000px;
 }
 
-.footer p{
+.footer1 p{
 	text-align: center;
-	margin-top: 13px;
-	margin-left: 210px;
-	margin-bottom: 30px;
+	margin-top: 20px;
+	margin-left: -14px;
+	color: grey;
+    margin-bottom: 30px;
 }
 
-.pra a{
+.footer1 a{
+	color: gray;
+}
+
+.pra1 a{
 	color: black;
 }
 
@@ -141,4 +161,22 @@
 	height: 100vh;
 	width: 100vw;
 	display: flex;
+}
+
+.forget1{
+	margin-left: 300px;
+	margin-bottom: 20px;
+	
+}
+
+.forget1 a{
+	color: gray;
+}
+
+.div_21{
+	float: right;
+	display: flex;
+	margin-top: -430px;
+	/* padding-left: 10px; */
+	margin-right: 310px;
 }

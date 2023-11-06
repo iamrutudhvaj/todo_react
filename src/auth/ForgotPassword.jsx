@@ -70,7 +70,7 @@ const ForgotPassword = () => {
 
                     <div className="forgot_end">
                         <hr className='forgotline' />
-                        <a href="" className='loginlink'>Go to login</a>
+                        <a href="/Signin" className='loginlink'>Go to login</a>
                     </div>
 
                 </div>

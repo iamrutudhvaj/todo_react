@@ -1,13 +1,21 @@
 import React from 'react';
 import todo from "../images/Todoist_logo.png";
+// import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+// import GoogleIcon from '@mui/icons-material/Google';
 import google from "../images/goo.png";
 import facebook from "../images/face.png";
 import apple from "../images/apple.png";
 import TextField from '@mui/material/TextField';
-import { styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
-import "../signup.css";
-
+import "./Signin.css";
+import sipic from "../images/signin.png";
 
 const Signup = () => {
 
@@ -20,7 +28,7 @@ const Signup = () => {
 				borderRadius: 4,
 				backgroundColor: 'transparent',
 				border: '1px solid',
-				width: '350px',
+				width: '380px',
 				'&:hover': {
 					backgroundColor: 'transparent',
 				},
@@ -30,55 +38,46 @@ const Signup = () => {
 			},
 		}));
 
+	const [showPassword, setShowPassword] = React.useState(false);
+
+	const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+	// const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+	// 	event.preventDefault();
+	// }
 
 	return (
 		<>
 
-			<div className="main">
+			<div className="log_main">
 				<div className="div_1">
-
-
-					<div className="main_header">
+					<div className="log_header">
 						<img src={todo} alt="logo" height="40px" width="150px" />
-						{/* <PlaylistAddCheckIcon className="todo" style={{ fontSize: '4.5rem' }}></PlaylistAddCheckIcon> */}
-						{/* <h1 className='mhead'>todoist</h1> */}
 					</div>
-					<div className="child_header">
-						<h1 className='chead'>Sign up</h1>
+					<div className="log_child">
+						<h1 className='chead'>Log in</h1>
 					</div>
 					<div className="form">
 						<form action="">
-							<div className="icon">
+							<div className="log_icon">
 
-								<div className='google'>
+								<div className='log_google'>
 									{/* <GoogleIcon /> Continue with Google */}
 									<img src={google} alt="google image" height='30px' width='30px' /> <strong className='go' >  Continue with Google </strong>
 								</div>
-								<div className='google'>
+								<div className='log_google'>
 									<img src={facebook} alt="facebook image" height='20px' width='20px' style={{ marginRight: '7px' }} /> <strong className='face'>  Continue with Facebook</strong>
 								</div>
-								<div className='google'>
+								<div className='log_google'>
 									<img src={apple} alt="apple image" height='30px' width='30px' /><strong className='app'>  Continue with Apple</strong>
 								</div><br />
 								{/* <fieldset className='line' /> */}
-								<hr className='line' /><br />
+								<hr className='log_line' /><br />
 							</div>
 
 
 							<div className="inp_data">
-								<div>
-									<RedditTextField
-										label="Name"
-										defaultValue=""
-										placeholder="Enter Your Name..."
-										id="reddit-input"
-										variant="filled"
-										style={{ marginTop: 11 }}
-										InputLabelProps={{
-											style: { color: 'black' }
-										}}
-									/>
-								</div>
+
 								<div>
 									<RedditTextField
 										label="Email"
@@ -106,7 +105,6 @@ const Signup = () => {
 										}}
 									/>
 
-
 								</div>
 							</div>
 							<div className='btn'>
@@ -115,44 +113,40 @@ const Signup = () => {
 									backgroundColor: "#dc4c3e",
 									padding: "6px 30px",
 									fontSize: "16px",
-									width: '350px',
+									width: '380px',
 									height: '52px',
 									marginBottom: '13px',
 
 								}} variant="contained" disableElevation>
-									Sign up with Email
+									Log in
 								</Button> <br /><br />
 							</div>
-							<div className="pra">
-								<p>By continuing with Google, Apple, or Email, you agree to Todoist’s</p>
-								<a href='Terms of Service'>Terms of Service</a> and <a href='Privacy Policy'>Privacy Policy.</a><br />
-								<hr className='line1' />
-
+							<div className="forget1">
+								<a href="/ForgotPassword">Forget Your Password?</a>
+							</div>
+							<div className="pra1">
+								<p>By continuing with Google, Apple, or Email
+								, you agree to Todoist’s
+								</p>
+								<a href='Terms of Service'>Terms of Service</a> and <a href='Privacy Policy'>Privacy Policy</a><p>.</p><br />
+								<hr className='line2' />
 
 							</div>
 							<div>
 							</div>
-							<div className='footer'>
-								<p>Already signed up? <a href="/Signin" className='login'>Go to login</a></p>
+							<div className='footer1'>
+								<p>Don't have an account? <a href="/Signup" className='login'>Sign Up</a></p>
 							</div>
 
 						</form>
 					</div>
 				</div>
-				<div className="div_2">
-					<div className="video">
-						<video src="https://todoist.b-cdn.net/assets/video/69a00ecf3b2aedf11010987593926c2e.mp4" height='500px' width="500px" loop autoPlay muted></video>
-					</div>
-
-
+				<div className="div_21">
+					<img src={sipic} alt="sign in img" height="230px" width="450px" />
 				</div>
-
-
 			</div>
-
-
 		</>
 	)
 }
 
-export default Signup
+export default Signup;
