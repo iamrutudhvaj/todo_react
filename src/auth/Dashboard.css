@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500&family=Josefin+Slab:wght@500&family=Montserrat:wght@300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.dashboard_child{
+    margin-top: 50px;
+    max-width: 700px;
+}
+.dashboard_child .title{
+    display: flex;
+    /* justify-content: center; */
+}
+.dashboard_child .dashboard_view{
+    display: flex;
+    padding-left: 500px;
+    color: rgb(79, 79, 79);
+}
+.dashboard_child .dashboard_view h3{
+  font-weight: 400;
+  margin-left: 5px;
+  color: rgb(110, 110, 110);
+}
+.add_task{
+    justify-content: left;
+    float: left;
+}
+.add_task a{
+    color: rgb(110, 110, 110);
+    text-decoration: none;
+    font-weight: 400;
+    float: left;
+}
+.dashboard_box{
+    box-sizing: border-box;
+    height: 238px;
+    width: 700px;
+    border: 2px solid rgb(194, 193, 193);
+    border-radius: 10px;
+margin-top: 40px;
+}
+.controls{
+ float: left;
+padding-left: 20px;
+}
+.dropdown{
+    padding-left: 20px;
+}
+.customDatePicker {
+    width: 140px;
+    height: 10px;
+    margin-left: 10px;
+    padding-right: 20px;
+    justify-content: left;
+  }
+.task_name{
+    margin-top: 10px;
+    border: none;
+    height: 30px;
+    width:680px;
+    font-size: 18px;
+    font-weight: 500;
+    outline: none;
+}
+
+.task_description{
+    border: none;
+    outline: none;
+    height: 25px;
+    width:680px;
+    font-size: 15px;
+    font-weight: 400;
+}
+.line0{
+    margin-top: 80px;
+}
+.last{
+    justify-content: right;
+    float: right;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+.btnadd{
+    padding-left: 30px;
+    margin-left: 28px;
+}
+.nav{
+	width: 100%;
+	height: 50px;
+	background-color: #dc4c3e;
+}

@@ -7,9 +7,45 @@ import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import "../signup.css";
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Signup = () => {
+
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [pass, setPass] = useState('');
+	const [response, setResponse] = useState(null);
+
+	const navigate = useNavigate();
+
+
+	const clickHandle = async (e) => {
+		try {
+			e.preventDefault();
+			const api = "http://192.168.29.54:8000/signUp";
+			const reqData =
+			{
+				name: name,
+				email: email,
+				password: pass,
+			};
+			const response = await axios.post(api, reqData);
+			// setResponse(alert("success", "Register Successfully ..."));
+			console.log(response);
+			setResponse("success", 'success..');
+			setResponse(() => { navigate('/Signin') })
+		}
+		catch (error) {
+			console.error('Error:', error);
+			setResponse("error", 'error..');
+			// setResponse(alert("error", 'An error occurred'));
+		}
+	};
+
 
 	const RedditTextField = styled((props) => (
 		<TextField InputProps={{ disableUnderline: true }} {...props} />
@@ -35,23 +71,24 @@ const Signup = () => {
 		<>
 
 			<div className="main">
+				<div className="msg">
+					{response && <div> {response}</div>}
+
+				</div>
 				<div className="div_1">
 
 
 					<div className="main_header">
 						<img src={todo} alt="logo" height="40px" width="150px" />
-						{/* <PlaylistAddCheckIcon className="todo" style={{ fontSize: '4.5rem' }}></PlaylistAddCheckIcon> */}
-						{/* <h1 className='mhead'>todoist</h1> */}
 					</div>
 					<div className="child_header">
 						<h1 className='chead'>Sign up</h1>
 					</div>
 					<div className="form">
-						<form action="">
+						<form action="" >
 							<div className="icon">
 
 								<div className='google'>
-									{/* <GoogleIcon /> Continue with Google */}
 									<img src={google} alt="google image" height='30px' width='30px' /> <strong className='go' >  Continue with Google </strong>
 								</div>
 								<div className='google'>
@@ -60,7 +97,6 @@ const Signup = () => {
 								<div className='google'>
 									<img src={apple} alt="apple image" height='30px' width='30px' /><strong className='app'>  Continue with Apple</strong>
 								</div><br />
-								{/* <fieldset className='line' /> */}
 								<hr className='line' /><br />
 							</div>
 
@@ -77,6 +113,9 @@ const Signup = () => {
 										InputLabelProps={{
 											style: { color: 'black' }
 										}}
+										value={name}
+										onChange={(e) => { setName(e.target.value) }}
+
 									/>
 								</div>
 								<div>
@@ -90,6 +129,8 @@ const Signup = () => {
 										InputLabelProps={{
 											style: { color: 'black' }
 										}}
+										value={email}
+										onChange={(e) => { setEmail(e.target.value) }}
 									/>
 								</div>
 								<div>
@@ -104,6 +145,9 @@ const Signup = () => {
 										InputLabelProps={{
 											style: { color: 'black' }
 										}}
+										value={pass}
+										onChange={(e) => { setPass(e.target.value) }}
+
 									/>
 
 
@@ -119,7 +163,7 @@ const Signup = () => {
 									height: '52px',
 									marginBottom: '13px',
 
-								}} variant="contained" disableElevation>
+								}} variant="contained" disableElevation onClick={clickHandle} >
 									Sign up with Email
 								</Button> <br /><br />
 							</div>
@@ -143,16 +187,10 @@ const Signup = () => {
 					<div className="video">
 						<video src="https://todoist.b-cdn.net/assets/video/69a00ecf3b2aedf11010987593926c2e.mp4" height='500px' width="500px" loop autoPlay muted></video>
 					</div>
-
-
 				</div>
-
-
 			</div>
-
-
 		</>
 	)
 }
 
-export default Signup
+export default Signup;

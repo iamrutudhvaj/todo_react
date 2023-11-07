@@ -29,25 +29,18 @@
 
 }
 
-.mhead {
-    color: #dc4c3e;
-    flex-direction: column;
-    float: right;
-    margin-top: 21px;
-    margin-left: 5px;
-    font-size: 28px;
-}
 
-.reset_detail {
+.reset_detail .chead {
     margin-top: 70px;
+	margin-left: 0px;
 }
 
-.chead {
+.chead h1{
     font-size: 35px;
 }
 
 .reset_p {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .reset_form {
@@ -75,41 +68,21 @@
     margin-bottom: 3px;
 }
 
-.reset_button {
-    justify-content: center;
-    text-align: center;
-}
-
-.reset_button button {
-    border-radius: 4px;
-    padding: 12px 90px 12px 90px;
-    background-color: #dc4c3e;
-    color: white;
-    font-weight: 600;
-    border: none;
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-.reset_button button:hover {
-    background-color: white;
-    color: #dc4c3e;
-    border: 1px solid #dc4c3e;
-}
-
 .reset_end {
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     text-decoration: none;
     color: black;
+	
 }
 
 .reset_end a {
-    /* text-decoration: none; */
     color: black;
 }
 
 .reset_end hr {
     border: 1px solid rgb(247, 241, 241);
     margin-bottom: 7px;
+	margin-bottom: 14px;
 }
+

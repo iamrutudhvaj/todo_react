@@ -1,23 +1,46 @@
 import React from 'react';
 import todo from "../images/Todoist_logo.png";
-// import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
-// import GoogleIcon from '@mui/icons-material/Google';
 import google from "../images/goo.png";
 import facebook from "../images/face.png";
 import apple from "../images/apple.png";
 import TextField from '@mui/material/TextField';
 import { alpha, styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import "./Signin.css";
 import sipic from "../images/signin.png";
+import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Signup = () => {
+const Signin = () => {
+	const navigate = useNavigate();
+
+
+	const [email, setEmail] = useState("");
+	const [pass, setPass] = useState("");
+	const [response, setResponse] = useState(null);
+
+	const InputEvent = async (e) => {
+		try {
+			e.preventDefault();
+			const url = "http://192.168.29.54:8000/signIn";
+			const reqdata = {
+				email: email,
+				password: pass,
+			};
+			const responseData = await axios.post(url, reqdata);
+			if(responseData.status === 200) {
+				const {token} = responseData.data;
+				localStorage.setItem("token",token);
+				navigate("/Dashboard");
+			}
+		}
+		catch (error) {
+			setResponse(error);
+			setResponse("error:", 'error');
+		}
+
+	};
 
 	const RedditTextField = styled((props) => (
 		<TextField InputProps={{ disableUnderline: true }} {...props} />
@@ -50,6 +73,13 @@ const Signup = () => {
 		<>
 
 			<div className="log_main">
+				{/* <div className="msg">
+					{response && <div> {response}</div>}
+
+				</div> */}
+				<div className="msg">
+					{response && <div>{response.message}</div>}
+				</div>
 				<div className="div_1">
 					<div className="log_header">
 						<img src={todo} alt="logo" height="40px" width="150px" />
@@ -89,6 +119,9 @@ const Signup = () => {
 										InputLabelProps={{
 											style: { color: 'black' }
 										}}
+										value={email}
+										onChange={(e) => { setEmail(e.target.value) }}
+
 									/>
 								</div>
 								<div>
@@ -103,6 +136,8 @@ const Signup = () => {
 										InputLabelProps={{
 											style: { color: 'black' }
 										}}
+										value={pass}
+										onChange={(e) => { setPass(e.target.value) }}
 									/>
 
 								</div>
@@ -117,7 +152,7 @@ const Signup = () => {
 									height: '52px',
 									marginBottom: '13px',
 
-								}} variant="contained" disableElevation>
+								}} variant="contained" disableElevation onClick={InputEvent}>
 									Log in
 								</Button> <br /><br />
 							</div>
@@ -126,7 +161,7 @@ const Signup = () => {
 							</div>
 							<div className="pra1">
 								<p>By continuing with Google, Apple, or Email
-								, you agree to Todoist’s
+									, you agree to Todoist's
 								</p>
 								<a href='Terms of Service'>Terms of Service</a> and <a href='Privacy Policy'>Privacy Policy</a><p>.</p><br />
 								<hr className='line2' />
@@ -149,4 +184,4 @@ const Signup = () => {
 	)
 }
 
-export default Signup;
+export default Signin;
