@@ -20,7 +20,7 @@ const Signin = () => {
 	const [pass, setPass] = useState("");
 	const [response, setResponse] = useState(null);
 
-	const InputEvent = async (e) => {
+	const LoginUser = async (e) => {
 		try {
 			e.preventDefault();
 			const url = "http://192.168.29.54:8000/signIn";
@@ -32,7 +32,7 @@ const Signin = () => {
 			if(responseData.status === 200) {
 				const {token} = responseData.data;
 				localStorage.setItem("token",token);
-				navigate("/Dashboard");
+				navigate("/");
 			}
 		}
 		catch (error) {
@@ -152,7 +152,7 @@ const Signin = () => {
 									height: '52px',
 									marginBottom: '13px',
 
-								}} variant="contained" disableElevation onClick={InputEvent}>
+								}} variant="contained" disableElevation onClick={LoginUser}>
 									Log in
 								</Button> <br /><br />
 							</div>

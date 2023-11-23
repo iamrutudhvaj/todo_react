@@ -20,7 +20,7 @@ const ForgotPassword = () => {
 	const [otp, setOtp] = useState("");
 	const [response, setResponse] = useState(null);
 
-	const InputEvent1 = async (e) => {
+	const VerifyOtp = async (e) => {
 		try {
 			e.preventDefault();
 			const url = "http://192.168.29.54:8000/verifyOtp";
@@ -39,7 +39,7 @@ const ForgotPassword = () => {
 
 	};
 
-	const InputEvent = async (e) => {
+	const ForgotPassword = async (e) => {
 		try {
 			e.preventDefault();
 			const url = "http://192.168.29.54:8000/forgotPassword";
@@ -124,7 +124,7 @@ const ForgotPassword = () => {
 						height: '50px',
 
 
-					}} variant="contained" disableElevation onClick={InputEvent}>
+					}} variant="contained" disableElevation onClick={ForgotPassword}>
 						Get OTP
 					</Button> <br /><br />
 
@@ -156,7 +156,7 @@ const ForgotPassword = () => {
 						height: '50px',
 
 
-					}} variant="contained" disableElevation onClick={InputEvent1}>
+					}} variant="contained" disableElevation onClick={VerifyOtp}>
 						Reset my password
 					</Button> <br /><br />
 

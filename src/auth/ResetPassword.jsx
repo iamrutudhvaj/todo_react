@@ -27,7 +27,7 @@ const ResetPassword = () => {
 	const location = useLocation();
 
 
-	const resetPass = async (e) => {
+	const ResetPass = async (e) => {
 		try {
 			e.preventDefault();
 			const email = location.state;
@@ -150,7 +150,7 @@ const ResetPassword = () => {
 								height: '52px',
 								marginBottom: '13px',
 
-							}} variant="contained" disableElevation onClick={resetPass}>
+							}} variant="contained" disableElevation onClick={ResetPass}>
 								Reset My Password
 							</Button> <br /><br />
 

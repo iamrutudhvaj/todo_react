@@ -23,7 +23,7 @@ const Signup = () => {
 	const navigate = useNavigate();
 
 
-	const clickHandle = async (e) => {
+	const RegisterUser = async (e) => {
 		try {
 			e.preventDefault();
 			const api = "http://192.168.29.54:8000/signUp";
@@ -70,7 +70,7 @@ const Signup = () => {
 	return (
 		<>
 
-			<div className="main">
+			<div className="main" style={{ marginBottom: '100px' }}>
 				<div className="msg">
 					{response && <div> {response}</div>}
 
@@ -163,7 +163,7 @@ const Signup = () => {
 									height: '52px',
 									marginBottom: '13px',
 
-								}} variant="contained" disableElevation onClick={clickHandle} >
+								}} variant="contained" disableElevation onClick={RegisterUser} >
 									Sign up with Email
 								</Button> <br /><br />
 							</div>
@@ -189,6 +189,7 @@ const Signup = () => {
 					</div>
 				</div>
 			</div>
+			<div style={{ height: '50px' }}></div>
 		</>
 	)
 }

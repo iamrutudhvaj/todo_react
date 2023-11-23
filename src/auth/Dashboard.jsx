@@ -17,10 +17,40 @@ import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import AddIcon from '@mui/icons-material/Add';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import axios from 'axios';
+
+
 const Dashboard = () => {
-	const [age, setAge] = React.useState('');
+	const [age, setAge] = useState('');
 	const [showForm, setShowForm] = useState(false); // State to control form visibilit
+
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
+	const [response, setResponse] = useState(null);
+
+
+	const addTodo = async (e) => {
+		try {
+			e.preventDefault();
+			const url = "http://192.168.29.54:8000/insertTask";
+			const reqdata = {
+				title: title,
+				description: description,
+			};
+			const token = localStorage.getItem("token")
+			const responseData = await axios.post(url, reqdata, { headers: { authorization: token } });
+			console.log(responseData);
+		}
+		catch (error) {
+			setResponse(error);
+			setResponse("error:", 'error');
+		}
+
+	};
+
+
+
 	const handleChange = (event: SelectChangeEvent) => {
 		setAge(event.target.value);
 	}
@@ -68,6 +98,9 @@ const Dashboard = () => {
 	return (
 		<>
 			<div className='nav'>
+				<div className="msg">
+					{response && <div>{response.message}</div>}
+				</div>
 				<div className="front">
 					<MenuIcon style={{ height: "45px", width: "40px", marginLeft: "30px", color: "white", cursor: 'pointer' }} />
 					<HomeIcon style={{ height: "45px", width: "40px", marginLeft: "15px", color: "white", cursor: 'pointer' }}></HomeIcon>
@@ -109,8 +142,8 @@ const Dashboard = () => {
 						}
 						{showForm && (
 							<div className="dashboard_box" style={{ marginLeft: "2px" }}>
-								<input type="text" className='task_name' placeholder='Task name' /><br /><br />
-								<input type="text" className='task_description' placeholder='Description' /><br /> <br />
+								<input type="text" className='task_name' placeholder='Task name' value={title} onChange={(e) => { setTitle(e.target.value) }} /><br /><br />
+								<input type="text" className='task_description' placeholder='Description' value={description} onChange={(e) => { setDescription(e.target.value) }} /><br /> <br />
 								<div className="controls">
 									<LocalizationProvider dateAdapter={AdapterDayjs}>
 										<DatePicker sx={{ width: '180px', height: '20px' }} className="customDatePicker" />
@@ -136,7 +169,7 @@ const Dashboard = () => {
 								<hr className='line0' />
 								<div className="last">
 									<Button variant="contained" style={{ backgroundColor: "rgb(194, 193, 189)", color: "black" }} onClick={toggleForm}>Cancle</Button>
-									<Button variant="contained" sx={{ marginLeft: "14px" }} style={{ backgroundColor: "#d1453b" }} className='btnadd'>Add Task</Button>
+									<Button variant="contained" sx={{ marginLeft: "14px" }} style={{ backgroundColor: "#d1453b" }} className='btnadd' onClick={addTodo}>Add Task</Button>
 								</div>
 							</div>
 						)}
@@ -147,3 +180,4 @@ const Dashboard = () => {
 	);
 }
 export default Dashboard;
+
