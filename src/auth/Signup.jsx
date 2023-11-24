@@ -41,8 +41,8 @@ const Signup = () => {
 		}
 		catch (error) {
 			console.error('Error:', error);
-			setResponse("error", 'error..');
-			// setResponse(alert("error", 'An error occurred'));
+			// setResponse("error", 'error..');
+			setResponse(alert("error", 'An error occurred'));
 		}
 	};
 

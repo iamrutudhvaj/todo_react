@@ -67,6 +67,11 @@ padding-left: 20px;
     outline: none;
 }
 
+.tasks-list li{
+    /* margin-left: 20px; */
+    text-align: left;
+}
+
 .task_description{
     border: none;
     outline: none;
@@ -93,3 +98,32 @@ padding-left: 20px;
 	height: 50px;
 	background-color: #dc4c3e;
 }
+
+.displaydata .deleteicon{
+	margin-right: 12px;
+	margin-top: -30px;
+	 font-size: 30px;
+	
+ }
+ .displaydata h4{
+	margin-top: -10px;
+	 font-weight: 500;
+	 font-size: 20px;
+	 color: rgb(83, 83, 83);
+ }
+ .displaydata h5{
+	 margin-left: 39px;
+	 font-weight: 400;
+	 font-size: 18px;
+	 color: rgb(149, 148, 148);
+ }
+ .displaytitle{
+	display: contents;
+   
+ }
+ .displaydata .editicon{
+	 justify-content: right;
+	 text-align: center;
+	margin-top: -30px;
+	 float: right;
+ }
