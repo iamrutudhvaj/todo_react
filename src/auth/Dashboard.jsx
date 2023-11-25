@@ -22,10 +22,13 @@ import axios from 'axios';
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 import { deleteTaskUrl, getTaskUrl, insertTaskUrl, updateTaskUrl } from './Api';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Dashboard = () => {
-	const [age, setAge] = useState('');
+	const [age, setAge] = useState('');	
 	const [showForm, setShowForm] = useState(false);   // show add task
 	const [showUpdate, setShowUpdate] = useState(false);  // show update form 
 	const [title, setTitle] = useState("");
@@ -33,8 +36,11 @@ const Dashboard = () => {
 	const [tasks, setTasks] = useState([]);  // show all the data
 
 	const [updateTaskId, setUpdateTaskId] = useState(null);
-	const [updateTitle, setUpdateTitle] = useState("");   
+	const [updateTitle, setUpdateTitle] = useState("");
 	const [updateDescription, setUpdateDescription] = useState("");
+
+	const navigate = useNavigate();
+
 
 	// Remain pervious task.
 
@@ -42,6 +48,11 @@ const Dashboard = () => {
 		const token = localStorage.getItem("token");
 		getTodo(token);
 	}, []);
+
+	const logOut = () => {
+		localStorage.removeItem('token');
+		navigate("/Signin");
+	}
 
 	// display all task 
 
@@ -212,16 +223,15 @@ const Dashboard = () => {
 							style={{
 								display: "flex",
 								marginLeft: "0px",
-								marginTop: "-42px",
+								marginTop: "-38px",
 								color: 'white',
 								height: '35px',
 								cursor: 'pointer'
 							}}
 						/>
 					</Search>
-					<AddIcon style={{ marginLeft: "1340px", marginBottom: '30px', marginTop: '-32px', color: "white", width: "50px", fontSize: '32px', cursor: 'pointer' }} onClick={toggleForm} />
-					<NotificationsNoneIcon style={{ marginLeft: "1400px", marginBottom: '45px', marginTop: '-80px', color: "white", width: "45px", fontSize: '32px', cursor: 'pointer' }}></NotificationsNoneIcon>
-					<HelpOutlineIcon style={{ marginLeft: "1460px", marginBottom: '59px', marginTop: '-80px', color: "white", width: "45px", fontSize: '32px', cursor: 'pointer' }}></HelpOutlineIcon>
+					<AddIcon style={{ marginLeft: "1430px", marginBottom: '30px', marginTop: '-35px', color: "white", width: "50px", fontSize: '32px', cursor: 'pointer' }} onClick={toggleForm} />
+					<PowerSettingsNewIcon style={{ color: 'white', fontSize: '32px', cursor: 'pointer', float: 'right', marginTop: '-60px', marginLeft: '1200px', marginRight: '20px' }} onClick={logOut} />
 				</div>
 			</div>
 			<center>
@@ -230,27 +240,25 @@ const Dashboard = () => {
 					<div className="dashboard_child">
 						<div className="title">
 							<h2>Today</h2>
-							<h4>{date}</h4>
-							<div className="dashboard_view"><h4><ViewListIcon /></h4> <h3>view</h3></div>
+							<h6>{date}</h6>
+							<div className="dashboard_view"><h4 ><ViewListIcon /></h4> <h3>view</h3></div>
 						</div>
-						<br />
 						<hr />
 
-						<div className="tasks-list"><br /> <br />
-							<h3>TODOS :</h3>
-							<ul style={{ listStyleType: "none"}}>
+						<div className="tasks-list"><br />
+							<h5>Todos :</h5>
+							<ul style={{ listStyleType: "none" }}>
 								{tasks && tasks.map(task => (
 
 									<li key={task.id}>
 										<div className="displaydata">
-											<RemoveCircleOutlineOutlinedIcon className='deleteicon' style={{ color: "#dc4c3e", marginTop:'10px' }} onClick={() => handleDeleteTask(task.id, localStorage.getItem("token"))} />
+											<RemoveCircleOutlineOutlinedIcon className='deleteicon' style={{ color: "#dc4c3e", marginTop: '10px' }} onClick={() => handleDeleteTask(task.id, localStorage.getItem("token"))} />
 											<h4 className='displaytitle'>{task.title}</h4> <br /> <h5>{task.description}</h5>
 											<EditCalendarOutlinedIcon className="editicon" style={{ justifyContent: "right", color: 'grey' }} onClick={() => toggleUpdate(task.id, task.title, task.description)}
 											/>
 
 										</div>
-
-										<br /><br /><hr /><br />
+										<hr /><br />
 									</li>
 								))}
 							</ul>
@@ -271,9 +279,10 @@ const Dashboard = () => {
 											displayEmpty
 											defaultValue='priority'
 											inputProps={{ 'aria-label': 'Without label' }}
+											style={{ height: '57px' }}
 										>
 											<MenuItem value="">
-												<h3 style={{ fontWeight: "300", color: "grey" }} ><OutlinedFlagIcon style={{ height: "18px" }} /> Priority</h3>
+												<h5 style={{ fontWeight: "300", color: "grey" }} ><OutlinedFlagIcon style={{ height: "18px" }} /> Priority</h5>
 											</MenuItem>
 											<MenuItem value={10}><FlagIcon style={{ color: "red", height: "18px" }} /> Priority 1</MenuItem>
 											<MenuItem value={20}><FlagIcon style={{ color: "orange", height: "18px" }} />  Priority 2</MenuItem>
@@ -314,9 +323,10 @@ const Dashboard = () => {
 											displayEmpty
 											defaultValue='priority'
 											inputProps={{ 'aria-label': 'Without label' }}
+											style={{ height: '57px' }}
 										>
 											<MenuItem value="">
-												<h3 style={{ fontWeight: "300", color: "grey" }} ><OutlinedFlagIcon style={{ height: "18px" }} /> Priority</h3>
+												<h5 style={{ fontWeight: "300", color: "grey" }} ><OutlinedFlagIcon style={{ height: "18px" }} /> Priority</h5>
 											</MenuItem>
 											<MenuItem value={10}><FlagIcon style={{ color: "red", height: "18px" }} /> Priority 1</MenuItem>
 											<MenuItem value={20}><FlagIcon style={{ color: "orange", height: "18px" }} />  Priority 2</MenuItem>
