@@ -21,30 +21,32 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import axios from 'axios';
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
+import { deleteTaskUrl, getTaskUrl, insertTaskUrl, updateTaskUrl } from './Api';
 
-const baseUrl = "http://192.168.29.54:8000";
 
 const Dashboard = () => {
 	const [age, setAge] = useState('');
-	const [showForm, setShowForm] = useState(false);
-	const [showUpdate, setShowUpdate] = useState(false);
+	const [showForm, setShowForm] = useState(false);   // show add task
+	const [showUpdate, setShowUpdate] = useState(false);  // show update form 
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [tasks, setTasks] = useState([]);
+	const [tasks, setTasks] = useState([]);  // show all the data
 
 	const [updateTaskId, setUpdateTaskId] = useState(null);
-	const [updateTitle, setUpdateTitle] = useState("");
+	const [updateTitle, setUpdateTitle] = useState("");   
 	const [updateDescription, setUpdateDescription] = useState("");
+
+	// Remain pervious task.
 
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 		getTodo(token);
 	}, []);
 
+	// display all task 
 
 	const getTodo = async (token) => {
 		try {
-			const getTaskUrl = `${baseUrl}/getTask`;
 			const getTaskResponse = await axios.get(getTaskUrl, {
 				headers: {
 					authorization: token,
@@ -60,11 +62,11 @@ const Dashboard = () => {
 
 	}
 
+	// add task
 
 	const addTodo = async (e) => {
 		try {
 			e.preventDefault();
-			const insertTaskUrl = `${baseUrl}/insertTask`;
 
 			const insertTaskData = {
 				title: title,
@@ -87,11 +89,11 @@ const Dashboard = () => {
 
 		setTitle("");
 		setDescription("");
+		setShowForm(false);
 	};
 
 	const handleDeleteTask = async (taskId, token) => {
 		try {
-			const deleteTaskUrl = `${baseUrl}/deleteTask`;
 
 			const response = await axios.delete(deleteTaskUrl, {
 				headers: {
@@ -111,7 +113,6 @@ const Dashboard = () => {
 
 	const updateTodo = async () => {
 		try {
-			const updateTaskUrl = `${baseUrl}/updateTask`;
 			const token = localStorage.getItem("token");
 
 			const updateTaskData = {
@@ -140,14 +141,7 @@ const Dashboard = () => {
 			console.error('Error updating task:', error.message);
 			// Handle error, show an error message, etc.
 		}
-
-
 	};
-
-
-
-
-
 
 	const handleChange = (event: SelectChangeEvent) => {
 		setAge(event.target.value);
@@ -163,8 +157,6 @@ const Dashboard = () => {
 		setUpdateDescription(description);
 		setShowUpdate(!showUpdate);
 	}
-
-
 
 	const Search = styled('div')(({ theme }) => ({
 		position: 'relative',
@@ -246,17 +238,14 @@ const Dashboard = () => {
 
 						<div className="tasks-list"><br /> <br />
 							<h3>TODOS :</h3>
-							<ul style={{ listStyleType: "none" }}>
+							<ul style={{ listStyleType: "none"}}>
 								{tasks && tasks.map(task => (
 
 									<li key={task.id}>
 										<div className="displaydata">
-											<RemoveCircleOutlineOutlinedIcon className='deleteicon' style={{ color: "#dc4c3e" }} onClick={() => handleDeleteTask(task.id, localStorage.getItem("token"))} />
+											<RemoveCircleOutlineOutlinedIcon className='deleteicon' style={{ color: "#dc4c3e", marginTop:'10px' }} onClick={() => handleDeleteTask(task.id, localStorage.getItem("token"))} />
 											<h4 className='displaytitle'>{task.title}</h4> <br /> <h5>{task.description}</h5>
 											<EditCalendarOutlinedIcon className="editicon" style={{ justifyContent: "right", color: 'grey' }} onClick={() => toggleUpdate(task.id, task.title, task.description)}
-
-											// handleEditTask(task.id, title, description, localStorage.getItem("token"))
-
 											/>
 
 										</div>

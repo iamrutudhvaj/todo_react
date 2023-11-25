@@ -11,6 +11,12 @@ import sipic from "../images/signin.png";
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signInUrl } from './Api.jsx';
+
+import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
 
 const Signin = () => {
 	const navigate = useNavigate();
@@ -20,27 +26,45 @@ const Signin = () => {
 	const [pass, setPass] = useState("");
 	const [response, setResponse] = useState(null);
 
+	function alert(type, msg) {
+		const bs_class = (type === "success") ? "alert-success" : "alert-danger";
+
+		return (
+			<div className={`alert ${bs_class} alert-dismissible fade show custom-alert`} role="alert">
+				<strong className="me-3">{msg}</strong>
+				<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		);
+	}
+
 	const LoginUser = async (e) => {
 		try {
 			e.preventDefault();
-			const url = "http://192.168.29.54:8000/signIn";
 			const reqdata = {
 				email: email,
 				password: pass,
 			};
-			const responseData = await axios.post(url, reqdata);
-			if(responseData.status === 200) {
-				const {token} = responseData.data;
-				localStorage.setItem("token",token);
+			const responseData = await axios.post(signInUrl, reqdata);
+			if (responseData.status === 200) {
+				const { token } = responseData.data;
+				localStorage.setItem("token", token);
+				// setResponse(alert("success", "Register Successfully ..."));
 				navigate("/");
+
 			}
 		}
 		catch (error) {
-			setResponse(error);
-			setResponse("error:", 'error');
+			// setResponse(error);
+			// setResponse("error:", 'error');
+			// const errorMessage = error.response?.data.message || 'An error occurred';
+			setResponse(alert("error", 'Invalid Password ...'));
+
+
 		}
 
 	};
+
+
 
 	const RedditTextField = styled((props) => (
 		<TextField InputProps={{ disableUnderline: true }} {...props} />
@@ -73,13 +97,14 @@ const Signin = () => {
 		<>
 
 			<div className="log_main">
-				{/* <div className="msg">
+				<div className="msg1">
 					{response && <div> {response}</div>}
-
-				</div> */}
-				<div className="msg">
-					{response && <div>{response.message}</div>}
 				</div>
+				{/* <div className="msg">
+					{response && <div>{response.message}</div>}
+				</div> */}
+
+
 				<div className="div_1">
 					<div className="log_header">
 						<img src={todo} alt="logo" height="40px" width="150px" />
@@ -151,6 +176,8 @@ const Signin = () => {
 									width: '380px',
 									height: '52px',
 									marginBottom: '13px',
+									marginLeft:'-14px'
+
 
 								}} variant="contained" disableElevation onClick={LoginUser}>
 									Log in

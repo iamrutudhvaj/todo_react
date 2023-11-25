@@ -11,6 +11,7 @@ import logo from "../images/Todoist_logo.png";
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { resetPasswordUrl } from "./Api";
 
 
 
@@ -32,12 +33,11 @@ const ResetPassword = () => {
 			e.preventDefault();
 			const email = location.state;
 			console.log(email);
-			const url = "http://192.168.29.54:8000/resetPassword";
 			const reqdata = {
 				email: email,
 				password: password,
 			};
-			const responseData = await axios.post(url, reqdata);
+			const responseData = await axios.post(resetPasswordUrl, reqdata);
 			setResponse("success: ", 'success');
 			setResponse(() => { navigate("/Signin") });
 		}

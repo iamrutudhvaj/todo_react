@@ -142,3 +142,9 @@
 	width: 100vw;
 	display: flex;
 }
+
+.msg div{
+	margin-left: 630px;
+	width: 40%;
+	margin-top: 10px;
+}

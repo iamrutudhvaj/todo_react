@@ -1,0 +1,11 @@
+export const baseUrl = "https://todo-pt.onrender.com";
+export const signUpUrl = `${baseUrl}/signUp`;
+export const signInUrl = `${baseUrl}/signIn`;
+export const forgotPasswordUrl = `${baseUrl}/forgotPassword`;
+export const changePasswordUrl = `${baseUrl}/changePassword`;
+export const resetPasswordUrl = `${baseUrl}/resetPassword`;
+export const verifyOtpUrl = `${baseUrl}/verifyOtp`;
+export const insertTaskUrl = `${baseUrl}/insertTask`;
+export const getTaskUrl = `${baseUrl}/getTask`;
+export const updateTaskUrl = `${baseUrl}/updateTask`;
+export const deleteTaskUrl = `${baseUrl}/deleteTask`;

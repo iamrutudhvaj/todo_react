@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import '../index.css'
+import { forgotPasswordUrl, verifyOtpUrl } from './Api';
+
 
 
 
@@ -19,18 +21,18 @@ const ForgotPassword = () => {
 
 	const [otp, setOtp] = useState("");
 	const [response, setResponse] = useState(null);
+	const [showOtp, setShowOtp] = useState(false);
 
 	const VerifyOtp = async (e) => {
 		try {
 			e.preventDefault();
-			const url = "http://192.168.29.54:8000/verifyOtp";
 			const reqdata = {
 				email: email,
 				otp: otp,
 			};
-			const responseData = await axios.post(url, reqdata);
+			const responseData = await axios.post(verifyOtpUrl, reqdata);
 			setResponse("success: ", responseData.data);
-			navigate("/ResetPassword",{state: email});
+			navigate("/ResetPassword", { state: email });
 		}
 		catch (error) {
 			setResponse(error);
@@ -42,11 +44,10 @@ const ForgotPassword = () => {
 	const ForgotPassword = async (e) => {
 		try {
 			e.preventDefault();
-			const url = "http://192.168.29.54:8000/forgotPassword";
 			const reqdata = {
 				email: email,
 			};
-			const responseData = await axios.post(url, reqdata);
+			const responseData = await axios.post(forgotPasswordUrl, reqdata);
 			setResponse("success: ", responseData.data);
 		}
 		catch (error) {
@@ -54,6 +55,10 @@ const ForgotPassword = () => {
 			setResponse("error:", 'error');
 		}
 	};
+
+	const toggleForm = () => {
+		setShowOtp(!showOtp);
+	}
 
 	const RedditTextField = styled((props) => (
 		<TextField InputProps={{ disableUnderline: true }} {...props} />
@@ -115,7 +120,7 @@ const ForgotPassword = () => {
 					/>
 					<br /><br />
 
-					<Button style={{
+					{/* <Button style={{
 						borderRadius: 7,
 						backgroundColor: "#dc4c3e",
 						padding: "6px 30px",
@@ -126,39 +131,63 @@ const ForgotPassword = () => {
 
 					}} variant="contained" disableElevation onClick={ForgotPassword}>
 						Get OTP
-					</Button> <br /><br />
+					</Button> <br /><br /> */}
 
-					<RedditTextField
-						label="Enter OTP"
-						defaultValue=""
-						placeholder="Enter Verify OTP..."
-						id="reddit-input"
-						variant="filled"
-						style={{
-							marginTop: 11,
-							width: 200
-						}}
-						InputLabelProps={{
-							style: { color: 'black' }
-						}}
-						value={otp}
-						onChange={(e) => { setOtp(e.target.value) }}
+					{!showOtp && <div onClick={toggleForm} style={{ cursor: "pointer" }}>
+						<Button style={{
+							borderRadius: 7,
+							backgroundColor: "#dc4c3e",
+							padding: "6px 30px",
+							fontSize: "16px",
+							width: '300px',
+							height: '50px',
 
-					/>
+
+						}} variant="contained" disableElevation onClick={ForgotPassword}>
+							Get OTP
+						</Button> <br /><br />
+					</div>
+					}
+
+					{showOtp && (
+						<>
+							<RedditTextField
+								label="Enter OTP"
+								defaultValue=""
+								placeholder="Enter Verify OTP..."
+								id="reddit-input"
+								variant="filled"
+								style={{
+									marginTop: 11,
+									width: 200
+								}}
+								InputLabelProps={{
+									style: { color: 'black' }
+								}}
+								value={otp}
+								onChange={(e) => { setOtp(e.target.value) }}
+
+							/>
+							<br /><br />
+
+							<Button style={{
+								borderRadius: 7,
+								backgroundColor: "#dc4c3e",
+								padding: "6px 30px",
+								fontSize: "16px",
+								width: '300px',
+								height: '50px',
+
+
+							}} variant="contained" disableElevation onClick={VerifyOtp}>
+								Reset my password
+							</Button>
+						</>
+					)}
+
+
+
 					<br /><br />
-
-					<Button style={{
-						borderRadius: 7,
-						backgroundColor: "#dc4c3e",
-						padding: "6px 30px",
-						fontSize: "16px",
-						width: '300px',
-						height: '50px',
-
-
-					}} variant="contained" disableElevation onClick={VerifyOtp}>
-						Reset my password
-					</Button> <br /><br />
 
 
 					<div className="forgot_end">

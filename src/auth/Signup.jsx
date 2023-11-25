@@ -10,8 +10,10 @@ import "../signup.css";
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signUpUrl } from './Api';
 
-
+import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 const Signup = () => {
 
@@ -22,27 +24,37 @@ const Signup = () => {
 
 	const navigate = useNavigate();
 
+	function alert(type, msg) {
+		const bs_class = (type === "success") ? "alert-success" : "alert-danger";
+
+		return (
+			<div className={`alert ${bs_class} alert-dismissible fade show custom-alert`} role="alert">
+				<strong className="me-3">{msg}</strong>
+				<button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		);
+	}
+
 
 	const RegisterUser = async (e) => {
 		try {
 			e.preventDefault();
-			const api = "http://192.168.29.54:8000/signUp";
 			const reqData =
 			{
 				name: name,
 				email: email,
 				password: pass,
 			};
-			const response = await axios.post(api, reqData);
+			const response = await axios.post(signUpUrl, reqData);
 			// setResponse(alert("success", "Register Successfully ..."));
 			console.log(response);
 			setResponse("success", 'success..');
 			setResponse(() => { navigate('/Signin') })
 		}
 		catch (error) {
-			console.error('Error:', error);
+			// console.error('Error:', error);
 			// setResponse("error", 'error..');
-			setResponse(alert("error", 'An error occurred'));
+			setResponse(alert("error", 'Already register user...'));
 		}
 	};
 
@@ -69,12 +81,11 @@ const Signup = () => {
 
 	return (
 		<>
+			<div className="msg">
+				{response && <div> {response}</div>}
+			</div>
+			<div className="main" >
 
-			<div className="main" style={{ marginBottom: '100px' }}>
-				<div className="msg">
-					{response && <div> {response}</div>}
-
-				</div>
 				<div className="div_1">
 
 
@@ -162,6 +173,7 @@ const Signup = () => {
 									width: '350px',
 									height: '52px',
 									marginBottom: '13px',
+									marginLeft:'-14px'
 
 								}} variant="contained" disableElevation onClick={RegisterUser} >
 									Sign up with Email
