@@ -145,7 +145,7 @@ const Signin = () => {
 											style: { color: 'black' }
 										}}
 										value={email}
-										onChange={(e) => { setEmail(e.target.value) }}
+										onChange={(e) => { console.log(e.target.value) ; setEmail(e.target.value) }}
 
 									/>
 								</div>
