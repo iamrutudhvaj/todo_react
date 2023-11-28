@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { getTaskUrl, insertTaskUrl, updateTaskUrl, deleteTaskUrl } from '../../auth/Api';
-import { addTodoSuccess, setTodos , updateTodos, deleteTodo } from './todoSlice';
+import { getTaskUrl, insertTaskUrl, updateTaskUrl, deleteTaskUrl, checkBoxUrl } from '../../auth/Api';
+import { addTodoSuccess, setTodos, updateTodos, deleteTodo, checkBoxChange } from './todoSlice';
 
 export const addTodoData = (todoData) => async (dispatch) => {
     try {
         const formData = new FormData();
 
-        formData.append('image', todoData.image);
         formData.append('title', todoData.title);
         formData.append('description', todoData.description);
+        formData.append('image', todoData.image);
 
         const token = localStorage.getItem('token');
 
@@ -64,8 +64,11 @@ export const updateTodoData = (todoData) => async (dispatch) => {
     }
 }
 
-export const deleteTodoData = ({ taskId, token }) => async (dispatch) => {
+export const deleteTodoData = (task) => async (dispatch) => {
     try {
+        const taskId = task.id;
+        dispatch(deleteTodo(taskId));
+        const token = localStorage.getItem("token");
         const response = await axios.delete(deleteTaskUrl, {
             headers: {
                 Authorization: token,
@@ -75,9 +78,28 @@ export const deleteTodoData = ({ taskId, token }) => async (dispatch) => {
             },
         });
         if (response.status === 200) {
-            dispatch(deleteTodo(taskId))
+            
         }
     } catch (error) {
+        dispatch(addTodoSuccess(task))
         console.error("Error deleting task:", error.message);
+    }
+}
+
+export const checkBoxChangeData = ({ id, isCompleted }) => async (dispatch) => {
+    try {
+        dispatch(checkBoxChange({ id, isCompleted }));
+        const token = localStorage.getItem("token");
+        const response = await axios.put(checkBoxUrl, { id, isCompleted }, {
+            headers: {
+                Authorization: token,
+            }
+        });
+        if(response.status === 200) {
+            
+        }
+    } catch (error) {
+        console.error("Checkbox not change successfully:- ", error.message);
+        dispatch(checkBoxChange({ id, isCompleted: !isCompleted }))
     }
 }

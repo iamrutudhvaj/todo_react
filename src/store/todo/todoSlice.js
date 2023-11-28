@@ -24,11 +24,25 @@ export const todoSlice = createSlice({
             })
         },
         deleteTodo: (state, action) => {
-            state.todos = state.todos.filter((todo)=> todo.id !== action.payload)
+            state.todos = state.todos.filter((todo) => todo.id !== action.payload)
+        },
+        checkBoxChange: (state, action) => {
+            const { id, isCompleted } = action.payload;
+            console.log(action.payload);
+            state.todos = state.todos.map((todo) => {
+                if (todo.id === id) {
+                    console.log(todo);
+                    return {
+                        ...todo,
+                        isCompleted
+                    }
+                }
+                return todo;
+            })
         }
     },
 });
 
-export const { addTodoSuccess, setTodos, updateTodos, deleteTodo } = todoSlice.actions;
+export const { addTodoSuccess, setTodos, updateTodos, deleteTodo, checkBoxChange } = todoSlice.actions;
 
 export default todoSlice.reducer;
